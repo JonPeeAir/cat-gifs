@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cats</title>
+    <link rel="shortcut icon" href="cat.svg" type="image/x-icon">
+
+    <style>
+        *, *::after, *::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>hehe CAT</h1>
+    <img src="#" alt="cat gif">
+    <p>refresh to get sum rando cat gif</p>
+
+    <script>
+        const img = document.querySelector("img");
+
+        fetch("https://api.giphy.com/v1/gifs/translate?api_key=x8JQpYFHY5V9blx2bvy1N4V7RCWpI7ue&s=cats", {mode: "cors"})
+        .then(response => {
+            return response.json();
+        })
+        .then(response => {
+            img.src = response.data.images.original.url;
+        })
+
+    </script>
+</body>
+</html>
