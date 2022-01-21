@@ -28,24 +28,40 @@
             max-width: 90%;
             max-height: 90%;
         }
+
+        button {
+            padding: 1rem;
+            font-size: 1rem;
+        }
     </style>
 
 </head>
 <body>
     <h1>hehe CAT</h1>
-    <img src="#" alt="cat gif">
-    <p>refresh to get sum rando cat gif</p>
+    <img src="#" alt="loading cat GIF...">
+    <button>Click to get another cat GIF</button>
+
 
     <script>
         const img = document.querySelector("img");
+        
+        loadCatGIF();
 
-        fetch("https://api.giphy.com/v1/gifs/translate?api_key=x8JQpYFHY5V9blx2bvy1N4V7RCWpI7ue&s=cats", {mode: "cors"})
-        .then(response => {
-            return response.json();
-        })
-        .then(response => {
-            img.src = response.data.images.original.url;
-        })
+        function loadCatGIF() {
+            fetch("https://api.giphy.com/v1/gifs/translate?api_key=x8JQpYFHY5V9blx2bvy1N4V7RCWpI7ue&s=cats", {mode: "cors"})
+            .then(response => {
+                return response.json();
+            })
+            .then(response => {
+                img.src = response.data.images.original.url;
+            })
+        }
+
+        const btn = document.querySelector("button");
+        btn.onclick = () => {
+            img.src = "#";
+            loadCatGIF();
+        };
 
     </script>
 </body>
